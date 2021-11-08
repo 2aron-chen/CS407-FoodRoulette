@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CS407FoodRoulette">
         <activity
+            android:name=".Recents_List"
+            android:exported="true" />
+        <activity
             android:name=".Nearby"
             android:exported="true" />
         <activity
