@@ -9,6 +9,6 @@ public class Load_From_Search extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.Load_From_Search);
+        setContentView(R.layout.load_from_search);
     }
 }
