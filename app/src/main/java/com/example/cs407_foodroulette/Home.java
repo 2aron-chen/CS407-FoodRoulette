@@ -19,7 +19,7 @@ public class Home extends AppCompatActivity {
 
     public void goToLoadFromSearch(){
         Intent intent = new Intent(this, Load_From_Search.class);
-        intent.putExtra("double", d);
+//        intent.putExtra("double", d);
         startActivity(intent);
     }
 
