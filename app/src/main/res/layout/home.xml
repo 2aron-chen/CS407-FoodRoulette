@@ -11,9 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="252dp"
+        android:background="@android:color/white"
         android:onClick="clickRoulette"
         android:text="Roulette"
-        android:background="@android:color/white"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +27,39 @@
         android:layout_marginTop="32dp"
         android:background="#FF0000"
         android:text="Shake"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="@+id/roulettebtn"
         app:layout_constraintTop_toBottomOf="@+id/roulettebtn" />
+
+    <Button
+        android:id="@+id/lockPricebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="3dp"
+        android:text="Lock"
+        app:layout_constraintBaseline_toBaselineOf="@+id/lockTypebtn"
+        app:layout_constraintEnd_toStartOf="@+id/lockTypebtn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/lockTypebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="53dp"
+        android:text="Lock"
+        app:layout_constraintBottom_toTopOf="@+id/roulettebtn"
+        app:layout_constraintEnd_toStartOf="@+id/lockDistancebtn"
+        app:layout_constraintStart_toEndOf="@+id/lockPricebtn" />
+
+    <Button
+        android:id="@+id/lockDistancebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="Lock"
+        app:layout_constraintBaseline_toBaselineOf="@+id/lockTypebtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lockTypebtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
