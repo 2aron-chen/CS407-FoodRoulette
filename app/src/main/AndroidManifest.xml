@@ -16,7 +16,7 @@
             android:name=".Load_From_Search"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Home"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
