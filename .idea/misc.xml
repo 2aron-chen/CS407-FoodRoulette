@@ -8,6 +8,16 @@
         <entry key="..\:/CS407/CS407-FoodRoulette/app/src/main/res/layout/nearby.xml" value="0.2957427536231884" />
         <entry key="..\:/CS407/CS407-FoodRoulette/app/src/main/res/layout/recents_list.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/kuanf/AndroidStudioProjects/CS407FoodRoulette/app/src/main/res/layout/activity_main.xml" value="0.27717391304347827" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/fragment_nearby.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/fragment_recents.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/fragment_results.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/load_from_search.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/nearby.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/recents_list.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/results.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/menu/menu.xml" value="0.21197916666666666" />
       </map>
     </option>
   </component>
