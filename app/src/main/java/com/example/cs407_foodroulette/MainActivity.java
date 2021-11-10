@@ -26,18 +26,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.PACKAGE_NAME, Context.MODE_PRIVATE);
         int view = sharedPreferences.getInt(Constants.VIEW, 0);
 
-        switch (view) {
-            case Constants.HOME:
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
-                break;
-            case Constants.NEARBY:
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, new NearbyFragment()).commit();
-            case Constants.RECENTS:
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, new RecentsFragment()).commit();
-            default:
-                break;
-        }
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
     }
 
     public void clickRoulette(View view){
