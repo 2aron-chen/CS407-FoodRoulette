@@ -5,22 +5,39 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
-
     private NavigationBarView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         bottomNavigationView = findViewById(R.id.bottomnav);
         bottomNavigationView.setOnItemSelectedListener(bottomnavFunction);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
+
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.PACKAGE_NAME, Context.MODE_PRIVATE);
+        int view = sharedPreferences.getInt(Constants.VIEW, 0);
+
+        switch (view) {
+            case Constants.HOME:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
+                break;
+            case Constants.NEARBY:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, new NearbyFragment()).commit();
+            case Constants.RECENTS:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, new RecentsFragment()).commit();
+            default:
+                break;
+        }
+
     }
 
     public void clickRoulette(View view){
