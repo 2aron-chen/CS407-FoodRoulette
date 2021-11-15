@@ -11,4 +11,12 @@
         android:layout_height="match_parent"
         android:text="Recent Fragment" />
 
+    <ListView
+        android:id="@+id/recentList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="50dp" />
+
 </FrameLayout>
