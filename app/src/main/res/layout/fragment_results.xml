@@ -11,4 +11,40 @@
         android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment" />
 
+    <TextView
+        android:id="@+id/textViewResultRestaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restaurant"
+        android:textSize="50dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="100dp"/>
+
+    <TextView
+        android:id="@+id/textViewResultStars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stars"
+        android:textSize="25dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="210dp"/>
+
+    <TextView
+        android:id="@+id/textViewResultHours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hours"
+        android:textSize="25dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="250dp"/>
+
+    <TextView
+        android:id="@+id/textViewResultPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PhoneNumber"
+        android:textSize="25dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="290dp"/>
+
 </FrameLayout>
