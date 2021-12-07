@@ -3,27 +3,27 @@ package com.example.cs407_foodroulette.RestuarantUtilities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResturantMatcher {
+public class RestaurantMatcher {
 
-    public ResturantMatcher() {
+    public RestaurantMatcher() {
         return;
     }
 
-    public Restuarant getMatch(RestuarantPreferences preferences) {
+    public Restaurant getMatch(RestaurantPreferences preferences) {
         return null;
     }
 
-    public RestuarantPreferences configureUserRestuarantPreferences(){
+    public RestaurantPreferences configureUserRestaurantPreferences(){
         // TODO: configure preference criteria
-        RestuarantPreferences preferences = new RestuarantPreferences(0, null, 0);
+        RestaurantPreferences preferences = new RestaurantPreferences(0, null, 0);
 
         return preferences;
     }
 
-    private List<Restuarant> filterByDistances() {
+    private List<Restaurant> filterByDistances() {
         // TODO: implement distance calculation
 
-        return new ArrayList<Restuarant>();
+        return new ArrayList<Restaurant>();
     }
 
 }

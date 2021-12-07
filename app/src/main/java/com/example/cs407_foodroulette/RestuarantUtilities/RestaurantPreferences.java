@@ -1,11 +1,11 @@
 package com.example.cs407_foodroulette.RestuarantUtilities;
 
-public class RestuarantPreferences {
+public class RestaurantPreferences {
     private int price;
     private String cuisine;
     private int distance;
 
-    public RestuarantPreferences(int price, String cuisine, int distance) {
+    public RestaurantPreferences(int price, String cuisine, int distance) {
         this.price = price;
         this.cuisine = cuisine;
         this.distance = distance;
