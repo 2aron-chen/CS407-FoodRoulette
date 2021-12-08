@@ -10,6 +10,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Spinner;
+
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,4 +61,40 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     };
+
+    public void lockSpinner(View view)
+    {
+        Spinner spinner;
+        Button button;
+        switch (view.getId())
+        {
+            case R.id.lockTypebtn:
+                button = (Button) findViewById(R.id.lockTypebtn);
+                spinner = (Spinner) findViewById(R.id.typeSpinner);
+                lockSpinnerToggle(spinner, button);
+                break;
+            case R.id.lockPricebtn:
+                button = (Button) findViewById(R.id.lockPricebtn);
+                spinner = (Spinner) findViewById(R.id.priceSpinner);
+                lockSpinnerToggle(spinner, button);
+                break;
+            case R.id.lockDistancebtn:
+                button = (Button) findViewById(R.id.lockDistancebtn);
+                spinner = (Spinner) findViewById(R.id.distanceSpinner);
+                lockSpinnerToggle(spinner, button);
+                break;
+        }
+    }
+
+    private void lockSpinnerToggle(Spinner spinner, Button button)
+    {
+        if (button.getText().equals("Lock"))
+        {
+            button.setText("Unlock");
+            spinner.setEnabled(false);
+        } else {
+            button.setText("Lock");
+            spinner.setEnabled(true);
+        }
+    }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
@@ -10,56 +10,96 @@
         android:id="@+id/roulettebtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="252dp"
+        android:layout_marginTop="36dp"
         android:background="@android:color/white"
         android:onClick="clickRoulette"
         android:text="Roulette"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/distanceSpinner" />
 
     <Button
         android:id="@+id/shakebtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
         android:background="#FF0000"
         android:text="Shake"
         android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/roulettebtn"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="@+id/roulettebtn"
         app:layout_constraintTop_toBottomOf="@+id/roulettebtn" />
-
-    <Button
-        android:id="@+id/lockPricebtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="3dp"
-        android:text="Lock"
-        app:layout_constraintBaseline_toBaselineOf="@+id/lockTypebtn"
-        app:layout_constraintEnd_toStartOf="@+id/lockTypebtn"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/lockTypebtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="53dp"
+        android:layout_marginEnd="24dp"
+        android:onClick="lockSpinner"
         android:text="Lock"
-        app:layout_constraintBottom_toTopOf="@+id/roulettebtn"
-        app:layout_constraintEnd_toStartOf="@+id/lockDistancebtn"
-        app:layout_constraintStart_toEndOf="@+id/lockPricebtn" />
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/typeSpinner" />
+
+    <Button
+        android:id="@+id/lockPricebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:onClick="lockSpinner"
+        android:text="Lock"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/lockTypebtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/lockTypebtn"
+        app:layout_constraintTop_toBottomOf="@+id/lockTypebtn" />
 
     <Button
         android:id="@+id/lockDistancebtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
+        android:layout_marginTop="32dp"
+        android:onClick="lockSpinner"
         android:text="Lock"
-        app:layout_constraintBaseline_toBaselineOf="@+id/lockTypebtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lockTypebtn" />
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/lockPricebtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/lockPricebtn"
+        app:layout_constraintTop_toBottomOf="@+id/lockPricebtn" />
+
+    <Spinner
+        android:id="@+id/typeSpinner"
+        android:layout_width="238dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="76dp"
+        android:entries="@array/cuisine_array"
+        app:layout_constraintEnd_toStartOf="@+id/lockPricebtn"
+        app:layout_constraintHorizontal_bias="0.426"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/priceSpinner"
+        android:layout_width="238dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="28dp"
+        android:entries="@array/price_array"
+        app:layout_constraintEnd_toEndOf="@+id/typeSpinner"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/typeSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/typeSpinner" />
+
+    <Spinner
+        android:id="@+id/distanceSpinner"
+        android:layout_width="238dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="28dp"
+        android:entries="@array/location_array"
+        app:layout_constraintEnd_toEndOf="@+id/priceSpinner"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/priceSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/priceSpinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
