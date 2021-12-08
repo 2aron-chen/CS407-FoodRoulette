@@ -7,30 +7,18 @@
     tools:context=".HomeFragment">
 
     <Button
-        android:id="@+id/roulettebtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:background="@android:color/white"
-        android:onClick="clickRoulette"
-        android:text="Roulette"
-        android:textColor="@android:color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/distanceSpinner" />
-
-    <Button
         android:id="@+id/shakebtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="52dp"
         android:background="#FF0000"
         android:text="Shake"
         android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="@+id/roulettebtn"
-        app:layout_constraintHorizontal_bias="0.478"
-        app:layout_constraintStart_toStartOf="@+id/roulettebtn"
-        app:layout_constraintTop_toBottomOf="@+id/roulettebtn" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/distanceSpinner"
+        android:onClick="clickShake"/>
 
     <Button
         android:id="@+id/lockTypebtn"

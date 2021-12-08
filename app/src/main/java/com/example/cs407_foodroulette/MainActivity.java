@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
     }
 
-    public void clickRoulette(View view){
+    public void clickShake(View view){
         goToLoadFromSearch();
     }
 
@@ -65,25 +65,22 @@ public class MainActivity extends AppCompatActivity {
     public void lockSpinner(View view)
     {
         Spinner spinner;
-        Button button;
+        Button button = (Button) findViewById(view.getId());
         switch (view.getId())
         {
             case R.id.lockTypebtn:
-                button = (Button) findViewById(R.id.lockTypebtn);
                 spinner = (Spinner) findViewById(R.id.typeSpinner);
-                lockSpinnerToggle(spinner, button);
                 break;
             case R.id.lockPricebtn:
-                button = (Button) findViewById(R.id.lockPricebtn);
                 spinner = (Spinner) findViewById(R.id.priceSpinner);
-                lockSpinnerToggle(spinner, button);
                 break;
             case R.id.lockDistancebtn:
-                button = (Button) findViewById(R.id.lockDistancebtn);
                 spinner = (Spinner) findViewById(R.id.distanceSpinner);
-                lockSpinnerToggle(spinner, button);
                 break;
+            default:
+                throw new IllegalStateException("Unexpected lock button id: " + view.getId());
         }
+        lockSpinnerToggle(spinner, button);
     }
 
     private void lockSpinnerToggle(Spinner spinner, Button button)
