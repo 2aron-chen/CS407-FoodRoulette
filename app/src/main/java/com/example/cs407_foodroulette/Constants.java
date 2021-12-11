@@ -1,5 +1,7 @@
 package com.example.cs407_foodroulette;
 
+import com.google.android.gms.maps.model.LatLng;
+
 public class Constants {
     public static final int HOME = 0;
     public static final int NEARBY = 1;
@@ -15,5 +17,10 @@ public class Constants {
     public static final String CUISINE_KEY = "CUISINE_KEY";
     public static final String DISTANCE_KEY = "DISTANCE_KEY";
     public static final String PRICE_KEY = "PRICE_KEY";
+
+    public static final String LAT_KEY = "LAT_KEY";
+    public static final String LONG_KEY = "LONG_KEY";
+
+    public static final LatLng DEFAULT_LATLNG = new LatLng(43.0757339, -89.4061951);
 
 }
