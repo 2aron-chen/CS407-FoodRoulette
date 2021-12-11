@@ -1,12 +1,18 @@
 package com.example.cs407_foodroulette;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,10 +20,22 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.cs407_foodroulette.RestuarantUtilities.RestaurantPreferences;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
     private NavigationBarView bottomNavigationView;
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
+    private final LatLng mDestinationLatLng = new LatLng(43.0757339, -89.4061951);
+    public LatLng currLatLng;
+    private GoogleMap mMap;
+    private FusedLocationProviderClient mFusedLocationProviderClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +51,31 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
     }
 
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+
+        if (requestCode == PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getLocation();
+            }
+        }
+    }
+
+    private void getLocation() {
+        int permission = ActivityCompat.checkSelfPermission(this.getApplicationContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION);
+
+        if (permission == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+        } else {
+
+        }
+    }
     public void clickShake(View view){
         goToLoadFromSearch();
     }
