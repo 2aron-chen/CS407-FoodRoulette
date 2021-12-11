@@ -46,6 +46,12 @@ public class DatabaseAccess {
         }
         while (c.moveToNext()){
             String restaurant = c.getString(0);
+
+//            Add apostrophe to avoid sql search to crash
+            if (restaurant.contains("'")){
+                int index = restaurant.indexOf("'");
+                restaurant = restaurant.substring(0, index) + "'" + restaurant.substring(index);
+            }
             Log.i(TAG, restaurant);
             Cursor lat = db.rawQuery("SELECT lat FROM Restaurants WHERE Restaurant = '"+restaurant+"'", new String[]{});
             Cursor lng = db.rawQuery("SELECT lng FROM Restaurants WHERE Restaurant = '"+restaurant+"'", new String[]{});
