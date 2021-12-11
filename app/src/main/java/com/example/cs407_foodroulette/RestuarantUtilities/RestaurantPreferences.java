@@ -1,14 +1,24 @@
 package com.example.cs407_foodroulette.RestuarantUtilities;
 
+import com.example.cs407_foodroulette.Constants;
+
 public class RestaurantPreferences {
     private int price;
     private String cuisine;
-    private int distance;
+    private String distance;
 
-    public RestaurantPreferences(int price, String cuisine, int distance) {
+    public RestaurantPreferences(int price, String cuisine, String distance) {
         this.price = price;
         this.cuisine = cuisine;
         this.distance = distance;
+
+        return;
+    }
+
+    public RestaurantPreferences() {
+        this.price = Constants.DEFAULT_PRICE;
+        this.cuisine = Constants.DEFAULT_CUISINE;
+        this.distance = Constants.DEFAULT_DISTANCE;
 
         return;
     }
@@ -29,11 +39,11 @@ public class RestaurantPreferences {
         this.cuisine = cuisine;
     }
 
-    public int getDistance() {
+    public String getDistance() {
         return distance;
     }
 
-    public void setDistance(int distance) {
+    public void setDistance(String distance) {
         this.distance = distance;
     }
 }
