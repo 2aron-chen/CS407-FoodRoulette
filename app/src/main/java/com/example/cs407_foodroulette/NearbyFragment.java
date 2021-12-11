@@ -12,8 +12,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+import java.util.MissingResourceException;
 
 public class NearbyFragment extends Fragment {
+    private LatLng currLatLng;
 
     public NearbyFragment() {
         // Required empty public constructor
@@ -22,13 +32,15 @@ public class NearbyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        setContentView(R.layout.activity_main);
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.fragment_map);
 
-        Activity activity = this.getActivity();
-        SharedPreferences sharedPreferences = activity.getSharedPreferences(Constants.PACKAGE_NAME, Context.MODE_PRIVATE);
-        sharedPreferences.edit().putInt(Constants.VIEW, Constants.NEARBY).apply();
+        Bundle bundle = this.getArguments();
+
+        if (bundle == null) {
+            throw new MissingResourceException("ERROR: Bundle missing!", "Bundle", "");
+        }
+
+        currLatLng = new LatLng(bundle.getDouble(Constants.LAT_KEY), bundle.getDouble(Constants.LONG_KEY));
+
 
         return inflater.inflate(R.layout.fragment_nearby, container, false);
     }
