@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.example.cs407_foodroulette.RestuarantUtilities.RestaurantPreferences;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,7 +38,38 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToLoadFromSearch() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, new LoadFromSearchFragment()).commit();
+        RestaurantPreferences prefs = new RestaurantPreferences();
+        Fragment loadFromSearch = new LoadFromSearchFragment();
+
+        String cuisine = Constants.DEFAULT_CUISINE;
+        String distance = Constants.DEFAULT_DISTANCE;
+        int price = Constants.DEFAULT_PRICE;
+
+        Spinner spin = findViewById(R.id.typeSpinner);
+
+        if (!spin.isEnabled()) {
+            cuisine = spin.getSelectedItem().toString();
+        }
+
+        spin = findViewById(R.id.distanceSpinner);
+
+        if (!spin.isEnabled()) {
+            distance = spin.getSelectedItem().toString();
+        }
+
+        spin = findViewById(R.id.priceSpinner);
+
+        if (!spin.isEnabled()) {
+            price = spin.getSelectedItemPosition();
+        }
+
+        Bundle args = new Bundle();
+        args.putInt(Constants.PRICE_KEY, price);
+        args.putString(Constants.CUISINE_KEY, cuisine);
+        args.putString(Constants.DISTANCE_KEY, distance);
+
+        loadFromSearch.setArguments(args);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, loadFromSearch).commit();
     }
 
     private NavigationBarView.OnItemSelectedListener bottomnavFunction = new NavigationBarView.OnItemSelectedListener() {
