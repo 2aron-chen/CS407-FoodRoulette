@@ -15,7 +15,7 @@ public class RestaurantMatcher {
 
     public RestaurantPreferences configureUserRestaurantPreferences(){
         // TODO: configure preference criteria
-        RestaurantPreferences preferences = new RestaurantPreferences(0, null, 0);
+        RestaurantPreferences preferences = new RestaurantPreferences(0, null, "0"); // Changed int 0 to string.
 
         return preferences;
     }
