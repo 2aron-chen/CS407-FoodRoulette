@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
     public LatLng currLatLng;
     private FusedLocationProviderClient mFusedLocationProviderClient;
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         int view = sharedPreferences.getInt(Constants.VIEW, 0);
 
         getLocation();
-
+        context = getApplicationContext();
         getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
     }
 
