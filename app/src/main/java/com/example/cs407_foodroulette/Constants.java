@@ -15,5 +15,6 @@ public class Constants {
     public static final String CUISINE_KEY = "CUISINE_KEY";
     public static final String DISTANCE_KEY = "DISTANCE_KEY";
     public static final String PRICE_KEY = "PRICE_KEY";
+    public static final String Final_KEY = "Final_KEY";
 
 }

@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 public class DatabaseAccess {
     private SQLiteOpenHelper openHelper;
     private SQLiteDatabase db;
@@ -36,44 +38,134 @@ public class DatabaseAccess {
         }
     }
 
-    public String getRestaurant(String cuisine, String price, double distance, double curr_lat, double curr_lng){
-        c = db.rawQuery("SELECT Restaurant FROM Restaurants WHERE Cuisine = '"+cuisine+"' AND Price = '"+price+"'", new String[]{});
-        StringBuffer buffer = new StringBuffer();
-        int count = c.getCount();
-        Log.i(TAG, String.valueOf(count));
-        if (count == 0){
-            return null;
+    public ArrayList<String> getRestaurant(String cuisine, String price, double distance, double curr_lat, double curr_lng, int condition){
+        ArrayList<String> cusineRestaurant = new ArrayList<>();
+        ArrayList<String> priceRestaurant = new ArrayList<>();
+        ArrayList<String> bothRestaurant = new ArrayList<>();
+        ArrayList<String> finalRestaurant = new ArrayList<>();
+        if (condition == 1){    // distance and cuisine are locked
+            c = db.rawQuery("SELECT Restaurant FROM Restaurants WHERE Cuisine = '"+cuisine+"'", new String[]{});
+
+            int count = c.getCount();
+            Log.i(TAG, String.valueOf(count));
+            if (count == 0){
+                return null;
+            }
+            while (c.moveToNext()){
+                String restaurant = c.getString(0);
+                cusineRestaurant.add(restaurant);
+            }
+        } else if (condition == 2){ // distance and price are locked
+            c = db.rawQuery("SELECT Restaurant FROM Restaurants WHERE Price = '"+price+"'", new String[]{});
+
+            int count = c.getCount();
+            Log.i(TAG, String.valueOf(count));
+            if (count == 0){
+                return null;
+            }
+            while (c.moveToNext()){
+                String restaurant = c.getString(0);
+                priceRestaurant.add(restaurant);
+            }
+        } else if (condition == 3){ // cuisine and price are locked
+            c = db.rawQuery("SELECT Restaurant FROM Restaurants WHERE Price = '"+price+"' AND Cuisine = '"+cuisine+"'", new String[]{});
+
+            int count = c.getCount();
+            Log.i(TAG, String.valueOf(count));
+            if (count == 0){
+                return null;
+            }
+            while (c.moveToNext()){
+                String restaurant = c.getString(0);
+                bothRestaurant.add(restaurant);
+            }
         }
-        while (c.moveToNext()){
-            String restaurant = c.getString(0);
 
-//            Add apostrophe to avoid sql search to crash
-            if (restaurant.contains("'")){
-                int index = restaurant.indexOf("'");
-                restaurant = restaurant.substring(0, index) + "'" + restaurant.substring(index);
-            }
-            Log.i(TAG, restaurant);
-            Cursor lat = db.rawQuery("SELECT lat FROM Restaurants WHERE Restaurant = '"+restaurant+"'", new String[]{});
-            Cursor lng = db.rawQuery("SELECT lng FROM Restaurants WHERE Restaurant = '"+restaurant+"'", new String[]{});
-            double restaurant_lat = 0.0;
-            double restaurant_lng = 0.0;
-            while(lat.moveToNext()){
-                restaurant_lat = Double.parseDouble(lat.getString(0));
-            }
+        if (condition == 0){    // Three are all lock
+            for(int i = 0; i < bothRestaurant.size(); i++){
+                String restaurant = bothRestaurant.get(i);
+//                Add apostrophe to avoid sql search to crash
+                if (restaurant.contains("'")){
+                    int index = restaurant.indexOf("'");
+                    restaurant = restaurant.substring(0, index) + "'" + restaurant.substring(index);
+                }
+                Cursor lat = db.rawQuery("SELECT lat FROM Restaurants WHERE Restaurant = '"+restaurant+"'", new String[]{});
+                Cursor lng = db.rawQuery("SELECT lng FROM Restaurants WHERE Restaurant = '"+restaurant+"'", new String[]{});
+                double restaurant_lat = 0.0;
+                double restaurant_lng = 0.0;
+                while(lat.moveToNext()){
+                    restaurant_lat = Double.parseDouble(lat.getString(0));
+                }
 
-            while(lng.moveToNext()){
-                restaurant_lng = Double.parseDouble(lng.getString(0));
+                while(lng.moveToNext()){
+                    restaurant_lng = Double.parseDouble(lng.getString(0));
+                }
+                double calculate_distance = distancefunc(curr_lat, restaurant_lat, curr_lng, restaurant_lng);
+                Log.i(TAG, String.valueOf(calculate_distance));
+                if (calculate_distance < distance) {
+                    Log.i(TAG, restaurant);
+                    finalRestaurant.add(restaurant);
+                }
             }
+        } else if(condition == 1){  // distance and cuisine are locked
+            for(int i = 0; i < cusineRestaurant.size(); i++){
+                String restaurant = cusineRestaurant.get(i);
+//                Add apostrophe to avoid sql search to crash
+                if (restaurant.contains("'")){
+                    int index = restaurant.indexOf("'");
+                    restaurant = restaurant.substring(0, index) + "'" + restaurant.substring(index);
+                }
+                Cursor lat = db.rawQuery("SELECT lat FROM Restaurants WHERE Restaurant = '"+restaurant+"'", new String[]{});
+                Cursor lng = db.rawQuery("SELECT lng FROM Restaurants WHERE Restaurant = '"+restaurant+"'", new String[]{});
+                double restaurant_lat = 0.0;
+                double restaurant_lng = 0.0;
+                while(lat.moveToNext()){
+                    restaurant_lat = Double.parseDouble(lat.getString(0));
+                }
 
-            double calculate_distance = distancefunc(curr_lat, restaurant_lat, curr_lng, restaurant_lng);
-            Log.i(TAG, String.valueOf(calculate_distance));
-            if (calculate_distance < distance) {
-                Log.i(TAG, restaurant);
-                buffer.append(";" + restaurant);
+                while(lng.moveToNext()){
+                    restaurant_lng = Double.parseDouble(lng.getString(0));
+                }
+                double calculate_distance = distancefunc(curr_lat, restaurant_lat, curr_lng, restaurant_lng);
+                Log.i(TAG, String.valueOf(calculate_distance));
+                if (calculate_distance < distance) {
+                    Log.i(TAG, restaurant);
+                    finalRestaurant.add(restaurant);
+                }
+            }
+        } else if(condition == 2){  // distance and price are locked
+            for(int i = 0; i < priceRestaurant.size(); i++){
+                String restaurant = priceRestaurant.get(i);
+//                Add apostrophe to avoid sql search to crash
+                if (restaurant.contains("'")){
+                    int index = restaurant.indexOf("'");
+                    restaurant = restaurant.substring(0, index) + "'" + restaurant.substring(index);
+                }
+                Cursor lat = db.rawQuery("SELECT lat FROM Restaurants WHERE Restaurant = '"+restaurant+"'", new String[]{});
+                Cursor lng = db.rawQuery("SELECT lng FROM Restaurants WHERE Restaurant = '"+restaurant+"'", new String[]{});
+                double restaurant_lat = 0.0;
+                double restaurant_lng = 0.0;
+                while(lat.moveToNext()){
+                    restaurant_lat = Double.parseDouble(lat.getString(0));
+                }
+
+                while(lng.moveToNext()){
+                    restaurant_lng = Double.parseDouble(lng.getString(0));
+                }
+                double calculate_distance = distancefunc(curr_lat, restaurant_lat, curr_lng, restaurant_lng);
+                Log.i(TAG, String.valueOf(calculate_distance));
+                if (calculate_distance < distance) {
+                    Log.i(TAG, restaurant);
+                    finalRestaurant.add(restaurant);
+                }
+            }
+        }else if (condition == 3){  // cuisine and price are locked
+            for(int i = 0; i <bothRestaurant.size(); i++){
+                finalRestaurant.add(bothRestaurant.get(i));
             }
         }
 
-        return buffer.toString();
+        return finalRestaurant;
     }
 
     public String getID(String name){
