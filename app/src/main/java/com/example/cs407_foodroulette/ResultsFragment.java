@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import java.util.MissingResourceException;
 
 public class ResultsFragment extends Fragment {
+    private String final_ID;
 
     public ResultsFragment() {
         // Required empty public constructor
@@ -22,6 +23,8 @@ public class ResultsFragment extends Fragment {
 
 
         Bundle bundle = this.getArguments();
+
+        final_ID = bundle.getString(Constants.Final_KEY);
 
         if (bundle == null) {
             throw new MissingResourceException("ERROR: Bundle missing!", "Bundle", "");
