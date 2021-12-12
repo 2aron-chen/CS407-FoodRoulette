@@ -50,12 +50,12 @@ public class LoadFromSearchFragment extends Fragment {
         Bundle args = new Bundle();
 
         restaurantList = Restaurant.getRestaurantsByCuisinePrice(cuisine, price);
-        if (distance != "-1 Mile") {
-            int index = distance.indexOf(" ");
-            distance = distance.substring(0,index);
-            restaurantList = Restaurant.getRestaurantsWithinDistance(restaurantList, Double.parseDouble(distance), current_lat, current_lng);
+        if (distance.equals("-1 Mile")) {
+            distance = ("5 Miles");
         }
-
+        int index = distance.indexOf(" ");
+        distance = distance.substring(0,index);
+        restaurantList = Restaurant.getRestaurantsWithinDistance(restaurantList, Double.parseDouble(distance), current_lat, current_lng);
 
         if (restaurantList == null){    // No restaurant found.
             args.putString(Constants.Final_KEY, "null");
