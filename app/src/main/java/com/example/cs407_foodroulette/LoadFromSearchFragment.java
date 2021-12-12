@@ -70,6 +70,9 @@ public class LoadFromSearchFragment extends Fragment {
         }
 
 
+        Fragment results = new ResultsFragment();
+        results.setArguments(args);
+
         View view = inflater.inflate(R.layout.fragment_load_from_search, container, false);
 
         return view;
