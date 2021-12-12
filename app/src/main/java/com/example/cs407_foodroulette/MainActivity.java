@@ -88,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
         args.putInt(Constants.PRICE_KEY, price);
         args.putString(Constants.CUISINE_KEY, cuisine);
         args.putString(Constants.DISTANCE_KEY, distance);
+        LatLng data = (currLatLng != null) ? currLatLng : Constants.DEFAULT_LATLNG;
+        args.putDouble(Constants.LAT_KEY, data.latitude);
+        args.putDouble(Constants.LONG_KEY, data.longitude);
 
         loadFromSearch.setArguments(args);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, loadFromSearch).commit();

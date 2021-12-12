@@ -22,8 +22,8 @@ public class LoadFromSearchFragment extends Fragment {
     private String distance;
     private int price;
 
-    double current_lat = 43.070042109796695;
-    double current_lng = -89.39036747340725;
+    double current_lat;
+    double current_lng;
     int condition = 0;
     ArrayList<Restaurant> restaurantList;
 
@@ -44,6 +44,8 @@ public class LoadFromSearchFragment extends Fragment {
         cuisine = bundle.getString(Constants.CUISINE_KEY);
         distance = bundle.getString(Constants.DISTANCE_KEY);
         price = bundle.getInt(Constants.PRICE_KEY)+1;
+        current_lng = bundle.getDouble(Constants.LONG_KEY);
+        current_lat = bundle.getDouble(Constants.LAT_KEY);
 
         Bundle args = new Bundle();
 
@@ -51,7 +53,7 @@ public class LoadFromSearchFragment extends Fragment {
         if (distance != "-1 Mile") {
             int index = distance.indexOf(" ");
             distance = distance.substring(0,index);
-            restaurantList = Restaurant.getRestaurantsWithinDistance(restaurantList, Double.parseDouble(distance),current_lat, current_lng);
+            restaurantList = Restaurant.getRestaurantsWithinDistance(restaurantList, Double.parseDouble(distance), current_lat, current_lng);
         }
 
 
