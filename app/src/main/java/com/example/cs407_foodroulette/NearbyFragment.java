@@ -2,7 +2,9 @@ package com.example.cs407_foodroulette;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -56,11 +58,10 @@ public class NearbyFragment extends Fragment {
 
         currLatLng = new LatLng(bundle.getDouble(Constants.LAT_KEY), bundle.getDouble(Constants.LONG_KEY));
 
-        List<Restaurant> restaurantList = findRestaurants();
+        restaurantList = findRestaurants();
         addMarkers(restaurantList);
         moveCamera();
-        setOnClickListeners(view);
-
+        setupOnClickListeners(view);
         onClickMore();
 
         return view;
@@ -86,7 +87,30 @@ public class NearbyFragment extends Fragment {
                         .title(restaurant.getRestaurantName()));
 
                 markerList.add(marker);
-            }
+
+                // setonclicklistener for each marker
+                map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(final Marker marker) {
+                        String title = marker.getTitle();
+                        Restaurant match = (restaurantList.size() != 0) ? restaurantList.get(0) : null;
+
+                        for (Restaurant restaurant : restaurantList) {
+                            if (restaurant.getRestaurantName().equals(title)) {
+                                match = restaurant;
+                                break;
+                            }
+                        }
+
+                        String url = match.getURL();
+                        Uri uri = Uri.parse(url);
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                        return true;
+                    }
+                });
+
+            } // end for
 
             for (Marker marker : markerList) {
                 marker.setVisible(false);
@@ -145,7 +169,7 @@ public class NearbyFragment extends Fragment {
         }
     }
 
-    private void setOnClickListeners(View view) {
+    private void setupOnClickListeners(View view) {
         Button button = (Button) view.findViewById(R.id.moreBtn);
         button.setOnClickListener(new View.OnClickListener()
         {
