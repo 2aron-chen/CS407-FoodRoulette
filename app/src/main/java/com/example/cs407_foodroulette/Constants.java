@@ -9,7 +9,6 @@ public class Constants {
 
     public static final String PACKAGE_NAME = "com.cs407_foodroulette";
     public static final String VIEW = "VIEW";
-    public static final String RECENTRESTAURANTS = "RECENTRESTAURANTS";
 
     public static final int DEFAULT_PRICE = -1;
     public static final String DEFAULT_CUISINE = "Unknown";

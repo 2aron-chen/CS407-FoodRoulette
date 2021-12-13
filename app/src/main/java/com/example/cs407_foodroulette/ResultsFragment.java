@@ -48,7 +48,10 @@ public class ResultsFragment extends Fragment {
         }
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.PACKAGE_NAME, Context.MODE_PRIVATE);
-        ArrayList<String> recents = new ArrayList<String>(sharedPreferences.getStringSet(Constants.RECENTRESTAURANTS, new HashSet<String>()));
+        ArrayList<String> recents = new ArrayList<String>();
+        for (int i = 0; i<10;i++){
+            recents.add(sharedPreferences.getString("RECENT"+Integer.toString(i+1), ""));
+        }
 
         View view = inflater.inflate(R.layout.fragment_results, container, false);
 
@@ -79,13 +82,17 @@ public class ResultsFragment extends Fragment {
                 int index = recents.indexOf(final_ID);
                 if (index != -1) {
                     recents.remove(index);
+                    recents.add("");
                 }
                 recents.add(0, final_ID);
                 while (recents.size() > 10){
                     recents.remove(10);
                 }
             }
-            sharedPreferences.edit().putStringSet(Constants.RECENTRESTAURANTS, new HashSet<>(recents)).apply();
+            for (int i = 0; i<recents.size();i++)
+            {
+                sharedPreferences.edit().putString("RECENT"+Integer.toString(i+1), recents.get(i)).apply();
+            }
 
             Restaurant finalRestaurant = Restaurant.getRestaurantById(final_ID);
             String restaurant = finalRestaurant.getRestaurantName();

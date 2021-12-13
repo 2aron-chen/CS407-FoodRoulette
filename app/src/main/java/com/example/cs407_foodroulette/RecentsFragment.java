@@ -34,9 +34,15 @@ public class RecentsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recents, container, false);
         Activity activity = this.getActivity();
         SharedPreferences sharedPreferences = activity.getSharedPreferences(Constants.PACKAGE_NAME, Context.MODE_PRIVATE);
-        ArrayList<String> recents = new ArrayList<String>(sharedPreferences.getStringSet(Constants.RECENTRESTAURANTS, new HashSet<String>()));
+        ArrayList<String> recents = new ArrayList<String>();
+        for (int i = 0; i<10;i++){
+            recents.add(sharedPreferences.getString("RECENT"+Integer.toString(i+1), ""));
+        }
         ArrayList<String> displayRestaurants = new ArrayList<String>();
         for (String id : recents) {
+            if (id == "") {
+                continue;
+            }
             Restaurant restaurant = Restaurant.getRestaurantById(id);
             String price = "";
             for (int i = 0; i<restaurant.getPriceLevel();i++) {
