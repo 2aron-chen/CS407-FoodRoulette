@@ -6,9 +6,10 @@
     tools:context=".ResultsFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/textViewResultRestaurant"
@@ -18,7 +19,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="Restaurant"
-        android:textSize="40dp" />
+        android:textSize="30dp" />
 
     <TextView
         android:id="@+id/textViewResultStars"
@@ -31,16 +32,81 @@
         android:layout_marginTop="110dp"/>
 
     <TextView
-        android:id="@+id/textViewResultHours"
+        android:id="@+id/textViewResultHourMonday"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hours"
-        android:textSize="25dp"
+        android:layout_height="wrap_content"
+        android:text="Monday Hour"
+        android:textSize="15dp"
         android:gravity="center"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="450dp"/>
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="150dp"/>
+
+    <TextView
+        android:id="@+id/textViewResultHourTuesday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tuesday Hour"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="170dp"/>
+
+    <TextView
+        android:id="@+id/textViewResultHourWednesday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wednesday Hour"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="190dp"/>
+
+    <TextView
+        android:id="@+id/textViewResultHourThursday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thursday Hour"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="210dp"/>
+
+    <TextView
+        android:id="@+id/textViewResultHourFriday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Friday Hour"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="230dp"/>
+
+    <TextView
+        android:id="@+id/textViewResultHourSaturday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Saturday Hour"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="250dp"/>
+
+    <TextView
+        android:id="@+id/textViewResultHourSunday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sunday Hour"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="270dp"/>
 
     <TextView
         android:id="@+id/textViewResultPhoneNumber"
@@ -50,7 +116,7 @@
         android:textSize="25dp"
         android:gravity="center"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="290dp"/>
+        android:layout_marginTop="300dp"/>
 
     <TextView
         android:id="@+id/textViewResultAddress"

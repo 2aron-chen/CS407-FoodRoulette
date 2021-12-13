@@ -12,12 +12,20 @@ import android.widget.TextView;
 
 import com.example.cs407_foodroulette.RestuarantUtilities.Restaurant;
 
+import java.util.ArrayList;
 import java.util.MissingResourceException;
 
 public class ResultsFragment extends Fragment {
     private String final_ID;
     public TextView restaurantTextView;
-    public TextView hourTextView;
+    public TextView mondayhourTextView;
+    public TextView tuesdayhourTextView;
+    public TextView wednesdayTextView;
+    public TextView thursdayhourTextView;
+    public TextView fridayhourTextView;
+    public TextView saturdayhourTextView;
+    public TextView sundayhourTextView;
+
     public TextView addressTextView;
     public TextView ratingTextView;
     public TextView phoneNumberTextView;
@@ -41,7 +49,13 @@ public class ResultsFragment extends Fragment {
         }
 
         restaurantTextView = (TextView) view.findViewById(R.id.textViewResultRestaurant);
-        hourTextView = (TextView) view.findViewById(R.id.textViewResultHours);
+        mondayhourTextView = (TextView) view.findViewById(R.id.textViewResultHourMonday);
+        tuesdayhourTextView = (TextView) view.findViewById(R.id.textViewResultHourTuesday);
+        wednesdayTextView = (TextView) view.findViewById(R.id.textViewResultHourWednesday);
+        thursdayhourTextView = (TextView) view.findViewById(R.id.textViewResultHourThursday);
+        fridayhourTextView = (TextView) view.findViewById(R.id.textViewResultHourFriday);
+        saturdayhourTextView = (TextView) view.findViewById(R.id.textViewResultHourSaturday);
+        sundayhourTextView = (TextView) view.findViewById(R.id.textViewResultHourSunday);
         addressTextView = (TextView) view.findViewById(R.id.textViewResultAddress);
         ratingTextView = (TextView) view.findViewById(R.id.textViewResultStars);
         phoneNumberTextView = (TextView) view.findViewById(R.id.textViewResultPhoneNumber);
@@ -50,18 +64,39 @@ public class ResultsFragment extends Fragment {
             Restaurant finalRestaurant = Restaurant.getRestaurantById(final_ID);
             String restaurant = finalRestaurant.getRestaurantName();
             String star = finalRestaurant.getRating() + " stars";
-            String hours = finalRestaurant.getHoursOfOperation().substring(0,4);
+            String hours = finalRestaurant.getHoursOfOperation();
             String phoneNumber = finalRestaurant.getPhoneNumber();
             String address = finalRestaurant.getStreetName();
 
+//            split the hours
+            ArrayList<String> index = new ArrayList<String>();
+            int i = hours.indexOf("~");
+            while (i >= 0){
+                index.add(String.valueOf(i));
+                i = hours.indexOf('~', i+1);
+            }
+            String temp = hours.substring(0, Integer.parseInt(index.get(0)));
+            String temp2 = hours.substring(Integer.parseInt(index.get(0))+1, Integer.parseInt(index.get(1)));
             restaurantTextView.setText(restaurant);
-            hourTextView.setText(hours);
+            mondayhourTextView.setText(hours.substring(0, Integer.parseInt(index.get(0))));
+            tuesdayhourTextView.setText(hours.substring(Integer.parseInt(index.get(0))+1, Integer.parseInt(index.get(1))));
+            wednesdayTextView.setText(hours.substring(Integer.parseInt(index.get(1))+1, Integer.parseInt(index.get(2))));
+            thursdayhourTextView.setText(hours.substring(Integer.parseInt(index.get(2))+1, Integer.parseInt(index.get(3))));
+            fridayhourTextView.setText(hours.substring(Integer.parseInt(index.get(3))+1, Integer.parseInt(index.get(4))));
+            saturdayhourTextView.setText(hours.substring(Integer.parseInt(index.get(4))+1, Integer.parseInt(index.get(5))));
+            sundayhourTextView.setText(hours.substring(Integer.parseInt(index.get(5))+1));
             addressTextView.setText(address);
             ratingTextView.setText(star);
             phoneNumberTextView.setText(phoneNumber);
         }else{
             restaurantTextView.setText("No Restaurant found");
-            hourTextView.setText("");
+            mondayhourTextView.setText("");
+            tuesdayhourTextView.setText("");
+            wednesdayTextView.setText("");
+            thursdayhourTextView.setText("");
+            fridayhourTextView.setText("");
+            saturdayhourTextView.setText("");
+            sundayhourTextView.setText("");
             addressTextView.setText("");
             ratingTextView.setText("");
             phoneNumberTextView.setText("");
