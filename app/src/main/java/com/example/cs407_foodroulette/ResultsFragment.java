@@ -49,8 +49,8 @@ public class ResultsFragment extends Fragment {
         if (final_ID != "null"){
             Restaurant finalRestaurant = Restaurant.getRestaurantById(final_ID);
             String restaurant = finalRestaurant.getRestaurantName();
-            String star = finalRestaurant.getRating();
-            String hours = finalRestaurant.getHoursOfOperation();
+            String star = finalRestaurant.getRating() + " stars";
+            String hours = finalRestaurant.getHoursOfOperation().substring(0,4);
             String phoneNumber = finalRestaurant.getPhoneNumber();
             String address = finalRestaurant.getStreetName();
 
