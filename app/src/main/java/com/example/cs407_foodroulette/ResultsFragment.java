@@ -32,6 +32,7 @@ public class ResultsFragment extends Fragment {
 
 
         Bundle bundle = this.getArguments();
+        View view = inflater.inflate(R.layout.fragment_results, container, false);
 
         final_ID = bundle.getString(Constants.Final_KEY);
 
@@ -39,25 +40,32 @@ public class ResultsFragment extends Fragment {
             throw new MissingResourceException("ERROR: Bundle missing!", "Bundle", "");
         }
 
-        Restaurant finalRestaurant = Restaurant.getRestaurantById(final_ID);
-        String restaurant = finalRestaurant.getRestaurantName();
-        String star = finalRestaurant.getRating();
-        String hours = finalRestaurant.getHoursOfOperation();
-        String phoneNumber = finalRestaurant.getPhoneNumber();
-        String address = finalRestaurant.getStreetName();
-
-        View view = inflater.inflate(R.layout.fragment_results, container, false);
         restaurantTextView = (TextView) view.findViewById(R.id.textViewResultRestaurant);
         hourTextView = (TextView) view.findViewById(R.id.textViewResultHours);
         addressTextView = (TextView) view.findViewById(R.id.textViewResultAddress);
         ratingTextView = (TextView) view.findViewById(R.id.textViewResultStars);
         phoneNumberTextView = (TextView) view.findViewById(R.id.textViewResultPhoneNumber);
 
-        restaurantTextView.setText(restaurant);
-        hourTextView.setText(hours);
-        addressTextView.setText(address);
-        ratingTextView.setText(star);
-        phoneNumberTextView.setText(phoneNumber);
+        if (final_ID != "null"){
+            Restaurant finalRestaurant = Restaurant.getRestaurantById(final_ID);
+            String restaurant = finalRestaurant.getRestaurantName();
+            String star = finalRestaurant.getRating();
+            String hours = finalRestaurant.getHoursOfOperation();
+            String phoneNumber = finalRestaurant.getPhoneNumber();
+            String address = finalRestaurant.getStreetName();
+
+            restaurantTextView.setText(restaurant);
+            hourTextView.setText(hours);
+            addressTextView.setText(address);
+            ratingTextView.setText(star);
+            phoneNumberTextView.setText(phoneNumber);
+        }else{
+            restaurantTextView.setText("No Restaurant found");
+            hourTextView.setText("");
+            addressTextView.setText("");
+            ratingTextView.setText("");
+            phoneNumberTextView.setText("");
+        }
 
         // Inflate the layout for this fragment
         return view;
