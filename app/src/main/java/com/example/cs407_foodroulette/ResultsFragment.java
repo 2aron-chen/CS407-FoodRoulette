@@ -60,6 +60,6 @@ public class ResultsFragment extends Fragment {
         phoneNumberTextView.setText(phoneNumber);
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_results, container, false);
+        return view;
     }
 }
