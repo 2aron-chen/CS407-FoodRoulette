@@ -8,15 +8,14 @@
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent"/>
 
     <TextView
         android:id="@+id/textViewResultRestaurant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="Restaurant"
         android:textSize="50dp" />
@@ -29,7 +28,7 @@
         android:textSize="25dp"
         android:gravity="center"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="210dp"/>
+        android:layout_marginTop="110dp"/>
 
     <TextView
         android:id="@+id/textViewResultHours"
@@ -40,8 +39,8 @@
         android:gravity="center"
         android:layout_marginStart="60dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginTop="250dp"
-        android:layout_marginBottom="350dp"/>
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="450dp"/>
 
     <TextView
         android:id="@+id/textViewResultPhoneNumber"
@@ -51,7 +50,7 @@
         android:textSize="25dp"
         android:gravity="center"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="390dp"/>
+        android:layout_marginTop="290dp"/>
 
     <TextView
         android:id="@+id/textViewResultAddress"
@@ -62,6 +61,6 @@
         android:gravity="center"
         android:layout_marginStart="60dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginTop="470dp"/>
+        android:layout_marginTop="370dp"/>
 
 </FrameLayout>

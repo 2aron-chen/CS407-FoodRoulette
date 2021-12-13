@@ -81,7 +81,7 @@ public class LoadFromSearchFragment extends Fragment {
         distance = distance.substring(0,index);
         restaurantList = Restaurant.getRestaurantsWithinDistance(restaurantList, Double.parseDouble(distance), current_lat, current_lng);
 
-        if (restaurantList == null){    // No restaurant found.
+        if (restaurantList.size() == 0){    // No restaurant found.
             args.putString(Constants.Final_KEY, "null");
         }else {
             Random rand = new Random();
