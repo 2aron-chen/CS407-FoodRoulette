@@ -1,5 +1,7 @@
 package com.example.cs407_foodroulette;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import com.example.cs407_foodroulette.RestuarantUtilities.Restaurant;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.MissingResourceException;
 
 public class ResultsFragment extends Fragment {
@@ -40,12 +43,20 @@ public class ResultsFragment extends Fragment {
 
 
         Bundle bundle = this.getArguments();
-        View view = inflater.inflate(R.layout.fragment_results, container, false);
-
-        final_ID = bundle.getString(Constants.Final_KEY);
-
         if (bundle == null) {
             throw new MissingResourceException("ERROR: Bundle missing!", "Bundle", "");
+        }
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.PACKAGE_NAME, Context.MODE_PRIVATE);
+        ArrayList<String> recents = new ArrayList<String>(sharedPreferences.getStringSet(Constants.RECENTRESTAURANTS, new HashSet<String>()));
+
+        View view = inflater.inflate(R.layout.fragment_results, container, false);
+
+        boolean fromRecent = bundle.getBoolean("FromRecent");
+        if (fromRecent == true) {
+            final_ID = recents.get(bundle.getInt("Position"));
+        } else {
+            final_ID = bundle.getString(Constants.Final_KEY);
         }
 
         restaurantTextView = (TextView) view.findViewById(R.id.textViewResultRestaurant);
@@ -61,6 +72,21 @@ public class ResultsFragment extends Fragment {
         phoneNumberTextView = (TextView) view.findViewById(R.id.textViewResultPhoneNumber);
 
         if (final_ID != "null"){
+            if (recents.size() == 0)
+            {
+                recents.add(final_ID);
+            } else {
+                int index = recents.indexOf(final_ID);
+                if (index != -1) {
+                    recents.remove(index);
+                }
+                recents.add(0, final_ID);
+                while (recents.size() > 10){
+                    recents.remove(10);
+                }
+            }
+            sharedPreferences.edit().putStringSet(Constants.RECENTRESTAURANTS, new HashSet<>(recents)).apply();
+
             Restaurant finalRestaurant = Restaurant.getRestaurantById(final_ID);
             String restaurant = finalRestaurant.getRestaurantName();
             String star = finalRestaurant.getRating() + " stars";

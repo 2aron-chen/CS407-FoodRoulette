@@ -92,7 +92,7 @@ public class LoadFromSearchFragment extends Fragment {
                 args.putString(Constants.Final_KEY, restaurantList.get(randomPick).getPlaceID());
             }
         }
-
+        args.putBoolean("FromRecent", false);
         results.setArguments(args);
 
         View view = inflater.inflate(R.layout.fragment_load_from_search, container, false);
