@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,14 +22,30 @@ public class LoadFromSearchFragment extends Fragment {
     private String cuisine;
     private String distance;
     private int price;
-
+    private Handler handler = new Handler();
     double current_lat;
     double current_lng;
     int condition = 0;
-    ArrayList<Restaurant> restaurantList;
+    private ArrayList<Restaurant> restaurantList;
+    private Fragment results;
+    private Runnable runnable;
 
     public LoadFromSearchFragment() {
-        // Required empty public constructor
+        results = new ResultsFragment();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                getParentFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.container, results).commit();
+            }
+        };
+    }
+
+    @Override
+    public void onDestroy() {
+        handler.removeCallbacks(runnable);
+        super.onDestroy();
     }
 
     @Override
@@ -69,11 +86,11 @@ public class LoadFromSearchFragment extends Fragment {
             }
         }
 
-
-        Fragment results = new ResultsFragment();
         results.setArguments(args);
 
         View view = inflater.inflate(R.layout.fragment_load_from_search, container, false);
+
+        handler.postDelayed(runnable, 3500);
 
         return view;
     }
