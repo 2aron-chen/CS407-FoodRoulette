@@ -37,7 +37,14 @@ public class LoadFromSearchFragment extends Fragment {
             public void run() {
                 getParentFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.container, results).commit();
+                        .setCustomAnimations(
+                                R.anim.slide_in,
+                                R.anim.fade_out,
+                                R.anim.fade_in,
+                                R.anim.slide_out
+                        )
+                        .replace(R.id.container, results)
+                        .commit();
             }
         };
     }
